@@ -112,13 +112,13 @@ public class GameManager : MonoBehaviour
             // 영양분: 강수량
             NutrientN += Random.Range(50, (int)RainAmount.value) - 50;
             NutrientN = Mathf.Clamp(NutrientN, 0, 100000000);
-            NutrientNText.text = "질소(N): " + NutrientN + " mg/L";
+            NutrientNText.text = "질소(N): " + (NutrientN * 0.0025) + " mg/L";
 
             NutrientP += float.Parse(string.Format("{0:N3}", Random.Range(0.001f, RainAmount.value / 50000)));
             NutrientP = Mathf.Clamp(NutrientP, 0, 2);
-            NutrientPText.text = "인(P): " + NutrientP + " mg/L";
+            NutrientPText.text = "인(P): " + NutrientP.ToString("F3") + " mg/L";
 
-            // 개체수: 물의 유속 + 온도(20도~25도) + 영양분() + 클로로필(다다익선) (5000mL정도
+            // 개체수: 물의 유속 + 온도(20도~25도) + 영양분() + 클로로필
             RWT = Random.Range(0, WaterTemperature > 30 ? 0.6f : WaterTemperature > 25 ? 1 : WaterTemperature > 20 ? 1 : WaterTemperature > 15 ? 0.5f : WaterTemperature > 10 ? 0.3f : WaterTemperature > 5 ? 0.1f : 0);
             RNN = Mathf.Clamp(Random.Range(0, (int)(NutrientN * RWT)), 0, 100);
             NutrientN -= RNN;
